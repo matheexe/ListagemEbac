@@ -18,73 +18,102 @@
 		char nome[40];
 		char sobrenome[40];
 		char cargo [40];
+		char confirmar [40];
+		int loop = 1; 
 	
 		//----
-		printf("\n\tVocê escolheu a opção de registro!\n");
-	
-		printf("\n\tDigite o CPF que deseja registrar: "); // CPF.
-		scanf("%s", cpf);
 		
-		strcpy(arquivo, cpf); // Copia os valores das strings.
-	
-		FILE *file; // Cria o arquivo no banco de dados.
-		file = fopen(arquivo, "w"); // Cria o arquivo e escreve com o "W".
-		fprintf(file, cpf); // Salva o valor da variável.
-		fclose(file); // Fecha o arquivo.
-	
-		file = fopen(arquivo,"a"); // Vírgula.
-		fprintf(file,", ");
-		fclose(file); // Fecha o arquivo.
-	
-	
-		//----
-		printf("\tDigite o nome que deseja registrar: "); // Nome.
-		scanf("%s", nome);
-	
-		file = fopen(arquivo,"a");
-		fprintf(file,nome);
-		fclose(file); // Fecha o arquivo.
-	
-	
-		//----
-		file = fopen(arquivo,"a"); // Vírgula.
-		fprintf(file,", ");
-		fclose(file); // Fecha o arquivo.
-	
-	
-		//----
-		printf("\tDigite o sobrenome que deseja registrar: "); // Sobrenome.
-		scanf("%s", sobrenome);
+		while (loop) // Começo do loop.
+		{
 		
-		file = fopen(arquivo,"a");
-		fprintf(file,sobrenome);
-		fclose(file); // Fecha o arquivo.
+			printf("\n\tVocê escolheu a opção de registro!\n");
+	
+			printf("\n\tDigite o CPF que deseja registrar: "); // CPF.
+			scanf("%s", cpf);
+		
+			strcpy(arquivo, cpf); // Copia os valores das strings.
+	
+			FILE *file; // Cria o arquivo no banco de dados.
+			file = fopen(arquivo, "w"); // Cria o arquivo e escreve com o "W".
+			fprintf(file, cpf); // Salva o valor da variável.
+			fclose(file); // Fecha o arquivo.
+	
+			file = fopen(arquivo,"a"); // Vírgula.
+			fprintf(file,", ");
+			fclose(file); // Fecha o arquivo.
 	
 	
-		//----
-		file = fopen(arquivo,"a"); // Vírgula.
-		fprintf(file,", ");
-		fclose(file); // Fecha o arquivo.
+			//----
+			printf("\tDigite o nome que deseja registrar: "); // Nome.
+			scanf("%s", nome);
+	
+			file = fopen(arquivo,"a");
+			fprintf(file,nome);
+			fclose(file); // Fecha o arquivo.
 	
 	
-		//----
-		printf("\tDigite o cargo que deseja registrar: "); // Cargo.
-		scanf("%s",cargo);
-		printf("\n\n");
-	
-		file = fopen(arquivo,"a");
-		fprintf(file,cargo);
-		fclose(file); // Fecha o aqruivo.
+			//----
+			file = fopen(arquivo,"a"); // Vírgula.
+			fprintf(file,", ");
+			fclose(file); // Fecha o arquivo.
 	
 	
-		system("pause"); // Pausa do registro.
+			//----
+			printf("\tDigite o sobrenome que deseja registrar: "); // Sobrenome.
+			scanf("%s", sobrenome);
+		
+			file = fopen(arquivo,"a");
+			fprintf(file,sobrenome);
+			fclose(file); // Fecha o arquivo.
+	
+	
+			//----
+			file = fopen(arquivo,"a"); // Vírgula.
+			fprintf(file,", ");
+			fclose(file); // Fecha o arquivo.
+		
+	
+			//----
+			printf("\tDigite o cargo que deseja registrar: "); // Cargo.
+			scanf("%s",cargo);
+			printf("\n\n");
+			
+		
+	
+			file = fopen(arquivo,"a");
+			fprintf(file,cargo);
+			fclose(file); // Fecha o aqruivo.
+	
+	
+			//---- REGISTRAR MAIS USUÁRIOS.
+			printf("\tDeseja registrar mais usuários?\n");
+			printf("\tDigite 'sim' para registrar e 'não' para voltar ao menu: ");
+		
+			scanf("%s", confirmar); // Lê o "sim".
+		
+			if (strcmp(confirmar, "sim") == 0 || strcmp(confirmar, "Sim") == 0) { // Confirma a escolha.
+			
+				loop = 1; // Volta pro loop.
+				system("cls"); // Limpa a tela.
+			
+			}
+			 	
+			else { // Se não o loop é quebrado.
+				
+				printf("\n\n\t");
+				loop = 0;	
+				
+			}
+			
+		}
+		
+		system("pause"); // Pausa a tela do registro.
 	
 	}
 	
 	// ========================================================
 	
 	int consulta() //FUNÇÃO DE CONSULTA.
-	
 	{ 
 	
 		setlocale(LC_ALL, "Portuguese"); // Definindo a lingua.
@@ -94,36 +123,64 @@
 		// Criação das variáveis.
 		char cpf[40];
 		char conteudo[250];
-	
-		printf("\n\tDigite o CPF a ser consultado: "); // CPF.
-		scanf("%s",cpf); // "%s" Armazena a string.
-	
-		FILE *file; // Cria o arquivo no banco de dados.
-		file = fopen(cpf,"r");
-	
-		//----
+		char confirmar[40];
+		int loop = 1;
 		
-		if(file == NULL){ // Caso o nome consultado não exista.
-	 
-			printf("\n\tArquivo não localizado!\n");
-		
-		}
-		
-		
-		while(fgets(conteudo,250, file) != NULL ) // Buscando informações.
+		while (loop) // Começo do loop;
 		{
+		
+	
+			printf("\n\tDigite o CPF a ser consultado: "); // CPF.
+			scanf("%s",cpf); // "%s" Armazena a string.
+	
+			FILE *file; // Cria o arquivo no banco de dados.
+			file = fopen(cpf,"r");
+	
+			//----
+		
+			if(file == NULL){ // Caso o nome consultado não exista.
+	 
+				printf("\n\tArquivo não localizado!\n");
+		
+			}
+		
+		
+			while(fgets(conteudo,250, file) != NULL ) // Buscando informações.
+			{
 			
-			printf("\n\tEssas são as informações do usuário:\n ");
-			printf("\tCPF, Nome, Sobrenome e Cargo: %s",conteudo);
-			printf("\n\n");
+				printf("\n\tEssas são as informações do usuário:\n ");
+				printf("\tCPF, Nome, Sobrenome e Cargo: %s",conteudo);
+				printf("\n\n");
 			
+			}
+		
+			//----
+		
+			fclose(file); // Fecha o arquivo após ler.
+			
+			
+			//---- CONSULTAR MAIS USUÁRIOS.
+			printf("\tDeseja consultar mais usuários?\n");
+			printf("\tDigite 'sim' para consultar e 'não' para voltar ao menu: ");
+		
+			scanf("%s", confirmar); // Lê o "sim".
+		
+			if (strcmp(confirmar, "sim") == 0 || strcmp(confirmar, "Sim") == 0) { // Confirma a escolha.
+			
+				loop = 1; // Volta pro loop.
+				system("cls"); // Limpa a tela.
+			
+			}
+			 	
+			else { // Se não o loop é quebrado.
+				
+				printf("\n\n\t");
+				loop = 0;	
+				
+			}
 		}
 		
-		//----
-		
-		fclose(file); // Fecha o arquivo após ler.
-		system("pause"); // Pausa da consulta.
-
+		system("pause"); // Pausa a tela da consulta.
 	
 	}
 	
@@ -139,50 +196,77 @@
 		char cpf[40]; 
 		char confirmacao[30]; // Armazena a confirmação.
 		bool confirme = false;
+		char confirmar[40]; // Confirmação do loop.
+		int loop = 1;
 		
-		printf("\n\tDigite o CPF a ser deletado: "); // Digite pra deletar.
-		scanf("%s", cpf);
 		
-		printf("\n\tDigite 'confirmar' para deletar: ");
-		scanf("%s", confirmacao); // Registra a string de confirmar.
+		while (loop) 
+		{
 		
-		if (strcmp(confirmacao, "confirmar") || strcmp(confirmacao, "Confirmar") ) { //Confirma a escolha.
+			printf("\n\tDigite o CPF a ser deletado: "); // Digite pra deletar.
+			scanf("%s", cpf);
+		
+			printf("\n\tDigite 'confirmar' ou 'negar': ");
+			scanf("%s", confirmacao); // Registra a string de confirmar.
+		
+			if (strcmp(confirmacao, "confirmar") == 0 || strcmp(confirmacao, "Confirmar") == 0 ) { //Confirma a escolha.
 			
-        	confirme = true;
-    	}
+        		confirme = true;
+    		}
     	
-    	//----
+    		//----
     	
-    	if (confirme == true){ // Se confirmar for digitado.
+    		if (confirme == true){ // Se confirmar for digitado.
     		
     		
-    		if(remove(cpf) == 0){ // CPF sendo removido.
+    			if(remove(cpf) == 0){ // CPF sendo removido.
     			
-    		printf("\n\tConfirmação recebida. Deletando usuário.");
-    		printf("\n\n");
+    			printf("\n\tConfirmação recebida. Deletando usuário.");
+    			printf("\n\n");
     		
     			
-			}
+				}
     		
-    		FILE *file;
-    		file = fopen(cpf, "r");
+    			FILE *file;
+    			file = fopen(cpf, "r");
     		
-    		if(file == NULL){ // Se o arquivo não for encontrado.
+    			if(file == NULL){ // Se o arquivo não for encontrado.
     		
-    		printf("\n\tO usuário não se encontra no sistema.\n"); // Mensagem de não se encontra no sistema.
-    		printf("\n\n");
+    			printf("\n\tO usuário não se encontra no sistema.\n"); // Mensagem de não se encontra no sistema.
     			
-			}
+				}
 			
-    	} 	
+    		} 	
 		
-		else {
+			else {
 			
-        	printf("\n\tAção cancelada pelo usuário.\n"); // Texto de cancelar a ação.
-        	printf("\n\n");
+        		printf("\n\tAção cancelada pelo usuário.\n"); // Texto de cancelar a ação.
+        		printf("\n\n");
         	
-    	}
+    		}
     		
+    		
+    		//---- DELETAR MAIS USUÁRIOS.
+			printf("\n\tDeseja deletar mais usuários?\n");
+			printf("\tDigite 'sim' para deletar e 'não' para voltar ao menu: ");
+		
+			scanf("%s", confirmar); // Lê o "sim".
+		
+			if (strcmp(confirmar, "sim") == 0 || strcmp(confirmar, "Sim") == 0) { // Confirma a escolha.
+			
+				loop = 1; // Volta pro loop.
+				system("cls"); // Limpa a tela.
+			
+			}
+			 	
+			else { // Se não o loop é quebrado.
+				
+				printf("\n\n\t");
+				loop = 0;	
+    		
+    		}	
+    	}
+    	
 		system("pause"); // Pausa do "delete."
 		
 	}
