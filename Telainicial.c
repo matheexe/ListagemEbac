@@ -210,6 +210,7 @@ int main(){ // Tela inicial.
 			printf("\t 1 - Registrar nomes.\n");
 			printf("\t 2 - Consultar nomes.\n");
 			printf("\t 3 - Deletar nomes.\n\n ");
+			printf("\t 4 - Sair do sistema.\n\n ");
 			printf("\t Número de escolha: ");		// Fim da interface do Menu.
 	
 	
@@ -229,6 +230,11 @@ int main(){ // Tela inicial.
 			
 			case 3: // Apagar nomes.
 			deletar();
+			break;
+			
+			case 4: // Sair do sistema.
+			printf("\n\tEncerrando o sistema!\n");
+			return 0;
 			break;
 			
 			default: //Opção acima de 3 ou abaixo de 1: Não disponíveis.
