@@ -275,60 +275,83 @@
 	// =========================================================!
 	
 	
-int main(){ // Tela inicial.
+int main() // Tela inicial.
+{ 				
+	
+	setlocale(LC_ALL, "Portuguese"); // Definindo a lingua.
 	
 	// Criação das variáveis.
 	int escolha = 0;
+	int comparacao;
 	int loop = 1; 
+	char senha[] ="a";
 	
-		for(loop=1;loop=1;) // Loop da tela.
+	
+	printf("\n\n        --- Cartório da EBAC ---\n\n "); // Senha pra acesso.
+	printf("\n\t Login de administrador.");
+	printf("\n\t Digite sua senha: ");
+	
+	scanf("%s", senha); // Lê a comparação abaixo.
+	comparacao = strcmp(senha,"admin");
+	if(comparacao == 0 ) // Concede acesso se a comparação for certa.
 	{
+	
+	
+	
+	
+			for(loop=1;loop=1;) // Loop da tela.
+		{
 		
-		system("cls");
+			system("cls");
 	
-		setlocale(LC_ALL, "Portuguese"); // Definindo a lingua.
+			setlocale(LC_ALL, "Portuguese"); // Definindo a lingua.
 	
-			printf("\n\n        --- Cartório da EBAC ---\n\n ");  // Começo da interface do Menu.
-			printf("\n    Escolha a opção desejada do menu:\n\n");
+				printf("\n\n        --- Cartório da EBAC ---\n\n ");  // Começo da interface do Menu.
+				printf("\n    Escolha a opção desejada do menu:\n\n");
 	
-			printf("\t 1 - Registrar nomes.\n");
-			printf("\t 2 - Consultar nomes.\n");
-			printf("\t 3 - Deletar nomes.\n\n ");
-			printf("\t 4 - Sair do sistema.\n\n ");
-			printf("\t Número de escolha: ");		// Fim da interface do Menu.
+				printf("\t 1 - Registrar nomes.\n");
+				printf("\t 2 - Consultar nomes.\n");
+				printf("\t 3 - Deletar nomes.\n\n ");
+				printf("\t 4 - Sair do sistema.\n\n ");
+				printf("\t Número de escolha: ");		// Fim da interface do Menu.
 	
 	
-		scanf("%d",&escolha); // Armazena o número e permite a escolha.
-		system("cls"); // Limpa a tela.
+			scanf("%d",&escolha); // Armazena o número e permite a escolha.
+			system("cls"); // Limpa a tela.
 	
-		// Começo da interface de seleção. 
-		switch(escolha){
+			// Começo da interface de seleção. 
+			switch(escolha){
 			
-			case 1: // Registrar nomes.
-			registro();
-			break;
+				case 1: // Registrar nomes.
+				registro();
+				break;
 			
-			case 2: // Consultar nomes.
-			consulta();
-			break;
+				case 2: // Consultar nomes.
+				consulta();
+				break;
 			
-			case 3: // Apagar nomes.
-			deletar();
-			break;
+				case 3: // Apagar nomes.
+				deletar();
+				break;
 			
-			case 4: // Sair do sistema.
-			printf("\n\tEncerrando o sistema!\n");
-			return 0;
-			break;
+				case 4: // Sair do sistema.
+				printf("\n\tEncerrando o sistema!\n");
+				return 0;
+				break;
 			
-			default: //Opção acima de 3 ou abaixo de 1: Não disponíveis.
-			printf("\n\t Essa opção não existe.\n");
-			system("pause");
-			break;
+				default: //Opção acima de 3 ou abaixo de 1: Não disponíveis.
+				printf("\n\t Essa opção não existe.\n");
+				system("pause");
+				break;
 			
-			// Fim da interface de seleção.
+			}// Fim da interface de seleção.
 		}
 	
-	}
-		
-}
+	} 
+	
+	else
+	printf("\n\t Senha incorreta!\n\n");
+	
+}	
+	
+	
